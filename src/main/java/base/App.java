@@ -1,4 +1,8 @@
 package base;
+
+import java.text.DecimalFormat;
+import java.util.Scanner;
+
 /*
  *  UCF COP3330 Summer 2021 Assignment 1 Solution
  *  Copyright 2021 Scott Matson
@@ -34,4 +38,52 @@ Challenges
 
  */
 public class App {
+
+    static Scanner ui = new Scanner(System.in);
+    public static void main(String[] args) {
+        DecimalFormat df = new DecimalFormat("##0.##");
+        System.out.println("Type C to convert from Fahrenheit to Celsius.\nPress F to convert from Celsius to Fahrenheit.");
+        System.out.print("Your choice: ");
+        String cf = isCF();
+
+        String c = "Celsius";
+        String f = "Fahrenheit";
+
+        if(cf.equals("c"))
+        {
+            System.out.print("Please enter the temperature in " + c + ": ");
+            double temp = ui.nextDouble();
+            double C_to_F = ((temp - 32) * 5 / 9);
+            System.out.println("The temperature in " + f + " is " + df.format(C_to_F) + ".");
+
+        }
+        else
+        {
+            System.out.print("Please enter the temperature in " + f + ": ");
+            double temp = ui.nextDouble();
+            double F_to_C = ((temp * 9 / 5) + 32);
+            System.out.println("The temperature in " + c + " is " + df.format(F_to_C) + ".");
+        }
+    }
+
+    public static String isCF()
+    {
+        while(true)
+        {
+            String a = ui.nextLine();
+            String b = a.toLowerCase();
+            if(b.equals("c"))
+            {
+                return b;
+            }
+            else if(b.equals("f"))
+            {
+                return b;
+            }
+            else
+            {
+                System.out.print("Please type C for Celsius or F for Fahrenheit: ");
+            }
+        }
+    }
 }
